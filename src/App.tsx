@@ -13,6 +13,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string | null;
+  searchText: string | null;
 }
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       genre
     }));
   };
+
   const handlePlatformSelection = (platform: Platform) => {
     setGameQuery((prevQuery) => ({
       ...prevQuery,
@@ -35,6 +37,13 @@ function App() {
     setGameQuery((prevQuery) => ({
       ...prevQuery,
       sortOrder
+    }));
+  };
+
+  const handleSearch = (searchText: string) => {
+    setGameQuery((prevQuery) => ({
+      ...prevQuery,
+      searchText
     }));
   };
 
@@ -50,7 +59,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={handleSearch} />
       </GridItem>
       <GridItem hideBelow="lg" area="aside" paddingX={5}>
         <GenreList
