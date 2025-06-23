@@ -1,5 +1,5 @@
 import platforms from "@/data/platforms";
-import apiClient, { type FetchResponse } from "@/services/api-client";
+import ApiClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 export interface Platform {
   id: number;
@@ -7,14 +7,12 @@ export interface Platform {
   slug: string;
 }
 
+const apiClient = new ApiClient<Platform>("/platforms/lists/parents");
+
 const usePlatforms = () => {
   return useQuery({
     queryKey: ["platforms"],
-    queryFn: () => {
-      return apiClient
-        .get<FetchResponse<Platform>>("/platforms/lists/parents")
-        .then((res) => res.data);
-    },
+    queryFn: apiClient.getAll,
     initialData: {
       count: platforms.length,
       results: platforms
