@@ -15,14 +15,14 @@ export interface Game {
 const apiClient = new ApiClient<Game>("/games");
 
 const useGames = (query: GameQuery) => {
-  const { genre, platform, sortOrder, searchText } = query;
+  const { genreId, platformId, sortOrder, searchText } = query;
   return useInfiniteQuery({
-    queryKey: ["games", genre?.id, platform?.id, sortOrder, searchText],
+    queryKey: ["games", query],
     queryFn: ({ pageParam }) => {
       return apiClient.getAll({
         params: {
-          genres: genre?.id,
-          parent_platforms: platform?.id,
+          genres: genreId,
+          parent_platforms: platformId,
           ordering: sortOrder,
           search: searchText,
           page: pageParam

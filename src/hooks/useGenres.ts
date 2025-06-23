@@ -17,7 +17,8 @@ const useGenres = () => {
     staleTime: 24 * 60 * 60 * 100,
     initialData: {
       count: genres.length,
-      results: genres
+      results: genres,
+      next: null
     }
   });
 };
