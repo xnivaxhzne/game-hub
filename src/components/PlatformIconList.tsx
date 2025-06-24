@@ -5,8 +5,10 @@ import {
   FaXbox,
   FaApple,
   FaLinux,
-  FaAndroid
+  FaAndroid,
 } from "react-icons/fa";
+import { SiSega } from "react-icons/si";
+
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
@@ -16,6 +18,8 @@ import type { Platform } from "@/hooks/usePlatforms";
 interface Props {
   platforms?: Platform[];
 }
+
+const NoRender = () => null;
 
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
@@ -27,12 +31,17 @@ const PlatformIconList = ({ platforms }: Props) => {
     linux: FaLinux,
     android: FaAndroid,
     ios: MdPhoneIphone,
-    web: BsGlobe
+    web: BsGlobe,
+    sega: SiSega,
   };
   return (
     <HStack marginTop={1}>
       {platforms?.map((platform) => (
-        <Icon as={iconMap[platform.slug]} key={platform.id} color="gray.500" />
+        <Icon
+          as={iconMap[platform.slug] || NoRender}
+          key={platform.id}
+          color="gray.500"
+        />
       ))}
     </HStack>
   );
