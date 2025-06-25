@@ -5,7 +5,7 @@ import {
   FaXbox,
   FaApple,
   FaLinux,
-  FaAndroid,
+  FaAndroid
 } from "react-icons/fa";
 import { SiSega } from "react-icons/si";
 
@@ -13,7 +13,7 @@ import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import type { IconType } from "react-icons";
-import type { Platform } from "@/hooks/usePlatforms";
+import type { Platform } from "@/entities/Platform";
 
 interface Props {
   platforms?: Platform[];
@@ -32,7 +32,7 @@ const PlatformIconList = ({ platforms }: Props) => {
     android: FaAndroid,
     ios: MdPhoneIphone,
     web: BsGlobe,
-    sega: SiSega,
+    sega: SiSega
   };
   return (
     <HStack marginTop={1}>
