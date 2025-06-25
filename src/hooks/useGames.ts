@@ -11,6 +11,7 @@ export interface Game {
   parent_platforms?: { platform: Platform }[];
   metacritic: number;
   rating_top: number;
+  slug: string;
 }
 
 const apiClient = new ApiClient<Game>("/games");
@@ -28,15 +29,15 @@ const useGames = () => {
           parent_platforms: platformId,
           ordering: sortOrder,
           search: searchText,
-          page: pageParam,
-        },
+          page: pageParam
+        }
       });
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.next ? allPages.length + 1 : undefined;
     },
-    staleTime: ms("24h"),
+    staleTime: ms("24h")
   });
 };
 
