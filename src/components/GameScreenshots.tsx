@@ -18,12 +18,12 @@ const GameScreenshots = ({ gameId }: Props) => {
         base: 1,
         md: 2
       }}
-      gap={5}
+      gap={3}
     >
       {screenshots?.results
         .filter(({ is_deleted }) => !is_deleted)
         .map(({ id, image }) => (
-          <Image key={id} src={image} width="100%" />
+          <Image key={id} src={image} />
         ))}
     </SimpleGrid>
   );
